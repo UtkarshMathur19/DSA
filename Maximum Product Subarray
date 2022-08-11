@@ -1,0 +1,26 @@
+Given an integer array nums, find a contiguous non-empty subarray within the array that has the largest product, and return the product.
+
+The test cases are generated so that the answer will fit in a 32-bit integer.
+
+A subarray is a contiguous subsequence of the array.
+
+Code ->
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int prod = nums[0];
+        int maxi = prod;
+        int mini = prod;
+        
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]<0)
+                swap(maxi, mini);
+            maxi = max(nums[i], maxi*nums[i]);
+            mini = min(nums[i], mini*nums[i]);
+            prod = max(prod, maxi);
+            
+        }
+        return prod;
+    }
+};
