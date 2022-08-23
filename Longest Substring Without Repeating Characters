@@ -1,0 +1,20 @@
+Given a string s, find the length of the longest substring without repeating characters.
+
+Code ->
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+       vector<int> vect(256,-1);
+        int maxlen = 0, start = -1;
+        for(int i=0;i<s.size();i++){
+            if(vect[int(s[i])]>start)
+                start = vect[int(s[i])];
+            vect[int(s[i])] = i;
+            
+            maxlen = max(maxlen,i-start);
+        }
+        return maxlen;
+        
+    }
+};
