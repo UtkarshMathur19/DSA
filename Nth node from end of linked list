@@ -6,18 +6,35 @@ Code ->
 
 int getNthFromLast(Node *head, int n)
 {
-    int count = 0;
-    Node *temp = head;
-    while(temp!=NULL){
-        temp = temp->next;
-        count++;
+    // int count = 0;
+    // Node *temp = head;
+    // while(temp!=NULL){
+    //     temp = temp->next;
+    //     count++;
+    // }
+    
+    // if(count-n<0)
+    //     return -1;
+    
+    // for(int i=0;i<count-n;i++){
+    //     head = head->next;
+    // }
+    // return head->data;
+    
+    
+    if(!head) return -1;
+    
+    Node *main = head, *ref = head;
+    while(n--){
+        if(!ref) return -1;
+        ref = ref->next;
+        
     }
     
-    if(count-n<0)
-        return -1;
-    
-    for(int i=0;i<count-n;i++){
-        head = head->next;
+    while(ref){
+        main = main->next;
+        ref=ref->next;
     }
-    return head->data;
+    return main->data;
 }
+
