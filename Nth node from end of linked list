@@ -1,0 +1,23 @@
+GFG
+
+Given a linked list consisting of L nodes and given a number N. The task is to find the Nth node from the end of the linked list.
+
+Code ->
+
+int getNthFromLast(Node *head, int n)
+{
+    int count = 0;
+    Node *temp = head;
+    while(temp!=NULL){
+        temp = temp->next;
+        count++;
+    }
+    
+    if(count-n<0)
+        return -1;
+    
+    for(int i=0;i<count-n;i++){
+        head = head->next;
+    }
+    return head->data;
+}
