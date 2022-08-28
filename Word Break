@@ -1,0 +1,30 @@
+Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+Code ->
+
+class Solution {
+public:
+    int dp[300];
+    int isThere(int i, string s, set<string>&wordict){
+        if(i == s.size()) return 1;
+        string temp;
+        if(dp[i]!=-1) return dp[i];
+        for(int j=i;j<s.size();j++){
+            temp+=s[j];
+            
+            if(wordict.find(temp)!=wordict.end()){
+                if(isThere(j+1, s, wordict)) return dp[i] = 1;
+            }
+        }
+        return dp[i] = 0;
+    }
+    
+    bool wordBreak(string s, vector<string>& wordDict) {
+        memset(dp, -1, sizeof(dp));
+        set<string> str;
+        for(auto it : wordDict) str.insert(it);
+        return isThere(0, s, str);
+    }
+};
