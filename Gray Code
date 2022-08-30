@@ -1,0 +1,37 @@
+An n-bit gray code sequence is a sequence of 2n integers where:
+
+Every integer is in the inclusive range [0, 2n - 1],
+The first integer is 0,
+An integer appears no more than once in the sequence,
+The binary representation of every pair of adjacent integers differs by exactly one bit, and
+The binary representation of the first and last integers differs by exactly one bit.
+Given an integer n, return any valid n-bit gray code sequence.
+
+Code ->
+
+class Solution {
+public:
+    
+    vector<string> sequence(int n){
+        if(n == 1)
+            return {"0", "1"};
+        vector<string> ans;
+        vector<string> temp = sequence(n-1);
+        
+        for(int i=0;i<temp.size();i++)
+            ans.push_back('0'+temp[i]);
+        for(int j=temp.size()-1;j>=0;j--)
+            ans.push_back('1'+temp[j]);
+        return ans;
+    }
+    
+    vector<int> grayCode(int n) {
+        vector<string> gray = sequence(n);
+        vector<int> ans;
+        
+        for(auto it : gray)
+            ans.push_back(stoi(it, 0, 2));
+        
+        return ans;
+    }
+};
